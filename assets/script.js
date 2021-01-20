@@ -35,12 +35,13 @@ startBtn.addEventListener("click", function(){
         window.location.reload()
         return;
     };
-    // hides start button when game is started
+    // hides start button and view highscores when game is started
     startBtn.style.display = "none";
+    highscoreEl.style.display = "none";
 
     //cycles through answers based on the array and puts the text into each button
     for (var j=0; j<answers0.length; j++){
-        quizBtn[j].style.display = "";
+        quizBtn[j].style.display = "initial";
         quizBtn[j].textContent = answers0[j];
     };
 
@@ -77,8 +78,8 @@ btnContainer.addEventListener("click", function(event){
         startBtn.textContent = "Main Menu"
         quizEl.children[1].textContent = "Final Score: " + score + " Please Enter Your Initials!";
         inputForm.textContent = "Please Enter Your Initials!";
-        inputForm.style.display = "";
-        submitBtn.style.display = "";
+        inputForm.style.display = "initial";
+        submitBtn.style.display = "initial";
         for (var j=0; j<answers0.length; j++){
             quizBtn[j].style.display = "none";
             quizBtn[j].textContent = "";
@@ -116,14 +117,20 @@ function timerCount() {
             return;
         }
         else {
-            timeEl.textContent = "Time: 0";
-            quizEl.children[0].textContent = "You Lose!";
+            quizEl.children[0].textContent = "Game Over!";
+            score = score + timeLeft
+            timeLeft = 0;
+            startBtn.style.display = ""
+            startBtn.textContent = "Main Menu"
             quizEl.children[1].textContent = "Final Score: " + score + " Please Enter Your Initials!";
-            quizEl.children[2].setAttribute("type", "text");
-            var submitScore = document.createElement("button");
-            quizEl.appendChild(submitScore);
-            quizEl.children[3].textContent = "Submit";
-            quizEl.children[3].setAttribute("id", "submitBtn");
+            inputForm.textContent = "Please Enter Your Initials!";
+            inputForm.style.display = "";
+            submitBtn.style.display = "";
+            for (var j=0; j<answers0.length; j++){
+                quizBtn[j].style.display = "none";
+                quizBtn[j].textContent = "";
+            };
+            rightOrWrong.textContent = ""
             clearInterval(timeInterval);
         };
 
@@ -133,14 +140,17 @@ function timerCount() {
 };
 
   
-submitBtn.addEventListener("click", function(event){
-    event.preventDefault();
+submitBtn.addEventListener("click", function(){
+    console.log(viewHighScoresPage.score)
+    console.log(viewHighScoresPage)
+    console.log(score)
+    console.log(viewHighScoresPage.score.value > score)
     if (submitBtn.textContent === "Main Menu"){
         window.location.reload();
         return;
     };
     
-    if (viewHighScoresPage === null || viewHighScoresPage.score > score) {
+    if (viewHighScoresPage === null || viewHighScoresPage.score.value < score) {
         quizEl.children[1].textContent = "Score Submitted!"
         var userInitialAndScore = {
             score: score,
@@ -153,7 +163,10 @@ submitBtn.addEventListener("click", function(event){
         }
 
     else if (score <= viewHighScoresPage.score){
-        quizEl.children[1].textContent = "Sorry! Score Too Low!"
+        quizEl.children[1].textContent = "Sorry! Score Too Low!";
+        inputForm.style.display = "none";
+        submitBtn.style.display = "none";
+        window.location.reload();
         return;
     }
     ;
