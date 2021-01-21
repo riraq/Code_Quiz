@@ -22,3 +22,13 @@ https://riraq.github.io/Code_Quiz/
 - Add sounds/music
 
 ## Screenshots
+### Main Menu
+![Main Menu](./assets/images/mainMenu.jpeg)
+### Question Right
+![Question Right](./assets/images/questionRight.jpeg)
+### Question Wrong
+![Question Wrong](./assets/images/questionWrong.jpeg)
+### Game End
+![Game End](./assets/images/gameEnd.jpeg)
+### Highscore Page 
+![Highscore Page](./assets/images/highscorePage.jpeg)
