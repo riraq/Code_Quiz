@@ -18,7 +18,7 @@ https://riraq.github.io/Code_Quiz/
 
 ## Work-in-Progress Updates
 - Save top three highscores
-- Update code to be more dynamic; currently changes elements based of children, not elements
+- Update code to be more dynamic; currently changes elements based off children, not elements
 - Add sounds/music
 
 ## Screenshots
