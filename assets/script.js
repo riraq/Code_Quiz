@@ -49,7 +49,7 @@ startBtn.addEventListener("click", function(){
 
     //cycles through answers based on the array and puts the text into each button
     for (var j=0; j<answers0.length; j++){
-        quizBtn[j].style.display = "initial";
+        quizBtn[j].style.display = "block";
         quizBtn[j].textContent = answers0[j];
     };
 

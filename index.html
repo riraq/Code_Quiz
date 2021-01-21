@@ -16,22 +16,22 @@
         <h1>Coding Quiz Challenge</h1>
 
         <p>
-            Welcome to the Coding Quiz Challenge! When you click the start button below, the timer will start to countdown as you race to finish the quiz. But beware: each wrong answer will cause a time penalty. Can you get to the end as quickly as possible and get the highest score?
+            Welcome to the Coding Quiz Challenge! When you click the start button below, the timer will start to countdown as you race to finish the quiz. But beware: each wrong answer will cause a sccore and time penalty. Can you get to the end as quickly as possible and get the highest score?
         </p>
 
 
-        <div id="button">
-            <button style="display: none;"></button>
-            <button style="display: none;"></button>
-            <button style="display: none;"></button>
-            <button style="display: none;"></button>
+        <div id="button" class="d-grid gap-2 col-6 mx-auto">
+            <button type="button" class="btn btn-primary" style="display: none;"></button>
+            <button type="button" class="btn btn-primary" style="display: none;"></button>
+            <button type="button" class="btn btn-primary" style="display: none;"></button>
+            <button type="button" class="btn btn-primary" style="display: none;"></button>
         </div>
 
         <p id="rightOrWrong"></p>
 
         <input type="text" id="finalScoreInput" style="display: none;"></input>
-        <button id="submitBtn" style="display: none;">Submit Score!</button>
-        <button id="startBtn" style="display: initial;">Start Quiz!</button>
+        <button id="submitBtn" type="button" class="btn btn-warning" style="display: none;">Submit Score!</button>
+        <button id="startBtn" type="button" class="btn btn-success" style="display: initial;">Start Quiz!</button>
 
     </div>
 
