@@ -8,15 +8,15 @@ var quizBtn = btnContainer.querySelectorAll("button");
 var rightOrWrong = document.getElementById("rightOrWrong");
 var inputForm = document.getElementById("finalScoreInput");
 var submitBtn = document.getElementById("submitBtn");
-var viewHighScoresPage = JSON.parse(localStorage.getItem("userInitialAndScore"))
+var viewHighScoresPage = JSON.parse(localStorage.getItem("userInitialAndScore"));
 
 // array containing questions
 var questions = ["What is JavaScript?", "What HTML element is used to link to a JavaScript file?", "Which is not used to declare a variable in JavaScript?", "What goes inside the parentheses of a function?", "What symbol is used to by the compiler to separate JavaScript statements?"];
 
 // array containing answers
-var correctAnswers = ["programming language", "<script>", "be", "argument", ";"]
+var correctAnswers = ["programming language", "<script>", "be", "argument", ";"];
 
-var answers0 = ["programming language", "sandwich", "coffee movie script", "reference book"]
+var answers0 = ["programming language", "sandwich", "coffee movie script", "reference book"];
 var answers1 = ["<html>", "<script>", "<link>", "<java>"];
 var answers2 = ["var", "let", "be", "const"];
 var answers3 = ["conflict", "debate", "disagreement", "argument"];
@@ -24,15 +24,23 @@ var answers4 = [";", ":", "/", "$"];
 var answersArray = [answers0, answers1, answers2, answers3, answers4];
 
 var questionNumber = 0;
-var score = 0
-var initials = ""
+var score = 0;
+var initials = "";
 var timeLeft = 60;
 
 // event that starts quiz and timer
 startBtn.addEventListener("click", function(){
     
     if (startBtn.textContent === "Main Menu"){
-        window.location.reload()
+        window.location.reload();
+        return;
+    };
+
+    if (startBtn.textContent === "Clear"){
+        quizEl.children[1].textContent = "Cleared!";
+        quizEl.children[3].textContent = "Cleared!";
+        startBtn.style.display = "none"
+        localStorage.clear();
         return;
     };
     // hides start button and view highscores when game is started
@@ -68,14 +76,14 @@ btnContainer.addEventListener("click", function(event){
     if (element.textContent !== correctAnswers[questionNumber]) {
         rightOrWrong.textContent = "Wrong!";
         score -= 5;
-        timeLeft -= 5
+        timeLeft -= 5;
     } 
     else if(questionNumber === 4 && element.textContent === correctAnswers[questionNumber]) {
         quizEl.children[0].textContent = "You Win!";
-        score = score + timeLeft
+        score = score + timeLeft;
         timeLeft = 0;
-        startBtn.style.display = ""
-        startBtn.textContent = "Main Menu"
+        startBtn.style.display = "";
+        startBtn.textContent = "Main Menu";
         quizEl.children[1].textContent = "Final Score: " + score + " Please Enter Your Initials!";
         inputForm.textContent = "Please Enter Your Initials!";
         inputForm.style.display = "initial";
@@ -84,7 +92,7 @@ btnContainer.addEventListener("click", function(event){
             quizBtn[j].style.display = "none";
             quizBtn[j].textContent = "";
         };
-        rightOrWrong.textContent = ""
+        rightOrWrong.textContent = "";
         return;
     } 
     else {
@@ -118,10 +126,10 @@ function timerCount() {
         }
         else {
             quizEl.children[0].textContent = "Game Over!";
-            score = score + timeLeft
+            score = score + timeLeft;
             timeLeft = 0;
-            startBtn.style.display = ""
-            startBtn.textContent = "Main Menu"
+            startBtn.style.display = "";
+            startBtn.textContent = "Main Menu";
             quizEl.children[1].textContent = "Final Score: " + score + " Please Enter Your Initials!";
             inputForm.textContent = "Please Enter Your Initials!";
             inputForm.style.display = "";
@@ -130,7 +138,7 @@ function timerCount() {
                 quizBtn[j].style.display = "none";
                 quizBtn[j].textContent = "";
             };
-            rightOrWrong.textContent = ""
+            rightOrWrong.textContent = "";
             clearInterval(timeInterval);
         };
 
@@ -147,7 +155,7 @@ submitBtn.addEventListener("click", function(){
     };
     
     if (viewHighScoresPage === null || viewHighScoresPage.score < score) {
-        quizEl.children[1].textContent = "Score Submitted!"
+        quizEl.children[1].textContent = "Score Submitted!";
         var userInitialAndScore = {
             score: score,
             inputForm: inputForm.value.trim(),
@@ -162,8 +170,7 @@ submitBtn.addEventListener("click", function(){
         inputForm.style.display = "none";
         submitBtn.style.display = "none";
         return;
-    }
-    ;
+    };
 });
 
 
@@ -176,11 +183,13 @@ highscoreEl.addEventListener("click", function(){
     quizEl.children[0].innerHTML = "High Scores";
     quizEl.children[1].textContent = "Initials: " + viewHighScoresPage.inputForm;
     quizEl.children[3].textContent = "Score: " + viewHighScoresPage.score;
-    submitBtn.style.display = ""
-    submitBtn.textContent = "Main Menu"
+    submitBtn.style.display = "";
+    submitBtn.textContent = "Main Menu";
+    startBtn.style.display = "";
+    startBtn.textContent = "Clear";
     }
     else {
-    highscoreEl.textContent = "None to Display...Yet!"
+    highscoreEl.textContent = "None to Display...Yet!";
     };
 });
 // function that shows the high scores by removing other elements and shifts the page back to the quiz when another button is clicked
