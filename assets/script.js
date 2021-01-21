@@ -141,16 +141,12 @@ function timerCount() {
 
   
 submitBtn.addEventListener("click", function(){
-    console.log(viewHighScoresPage.score)
-    console.log(viewHighScoresPage)
-    console.log(score)
-    console.log(viewHighScoresPage.score.value > score)
     if (submitBtn.textContent === "Main Menu"){
         window.location.reload();
         return;
     };
     
-    if (viewHighScoresPage === null || viewHighScoresPage.score.value < score) {
+    if (viewHighScoresPage === null || viewHighScoresPage.score < score) {
         quizEl.children[1].textContent = "Score Submitted!"
         var userInitialAndScore = {
             score: score,
@@ -159,14 +155,12 @@ submitBtn.addEventListener("click", function(){
         
         localStorage.setItem("userInitialAndScore", JSON.stringify(userInitialAndScore));
         submitBtn.style.display = "none";
-        window.location.reload()
         }
 
-    else if (score <= viewHighScoresPage.score){
+    else if (viewHighScoresPage.score >= score){
         quizEl.children[1].textContent = "Sorry! Score Too Low!";
         inputForm.style.display = "none";
         submitBtn.style.display = "none";
-        window.location.reload();
         return;
     }
     ;
@@ -174,7 +168,7 @@ submitBtn.addEventListener("click", function(){
 
 
 
-highscoreEl.addEventListener("click", function(event){
+highscoreEl.addEventListener("click", function(){
     if (viewHighScoresPage !== null){
     timeEl.innerHTML = "";
     highscoreEl.textContent = "";
